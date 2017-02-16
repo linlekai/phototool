@@ -16,6 +16,9 @@
       <transition name="fade">
         <a v-if="download" @click="reset" class="reset">重置</a>
       </transition>
+      <transition name="fade">
+        <a v-if="download" @click="Collection" class="collection" title="短暂性收藏，关闭浏览器将清空">收藏</a>
+      </transition>
     </header>
     <div id="box">
       <img :src="dataURI" id="img" ref="a" >
@@ -23,7 +26,7 @@
     <transition name="fade">
     <footer id="footer" v-if="download">
        <div class="swiper-container" v-if="download">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper" v-once>
             <div class="swiper-slide" style="background-image:url(../static/lome.png)" @click="lome">Lome</div>
             <div class="swiper-slide" style="background-image:url(../static/vintage.png)" @click="vintage">Vintage</div>
             <div class="swiper-slide" style="background-image:url(../static/clarity.png)" @click="clarity">Clarity</div>
@@ -58,7 +61,7 @@ export default {
       dataURI:'',
       hadDataURI:false,
       saveDataURI:'',
-      savename:""
+      savename:"",
     }
   },
   methods:{
@@ -77,7 +80,8 @@ export default {
               this.dataURI = dataURI
               this.hadDataURI = true
             },rej=>{
-             console.log("error") 
+             console.log("error")
+             alert("加载失败,请重试") 
             }).then(res=>{           
             //将图片转换为canvas
             var canvas = document.createElement("canvas")
@@ -98,6 +102,7 @@ export default {
                 centeredSlides: true,
                 slidesPerView: 'auto',
                 loop:true,
+                keyboardControl:true,
                 coverflow: {
                     rotate: 50,
                     stretch: 0,
@@ -106,7 +111,6 @@ export default {
                     slideShadows : true,
                 }
               })
-              console.log(666)
             this.$emit("read",this.download)
             }) //异步结束
       },
@@ -129,6 +133,9 @@ export default {
         $("#box").append($(canvas))
         var cx = $("#canvas")[0].getContext("2d")
         cx.drawImage(img,10,10,$("#img")[0].width>800?800:$("#img")[0].width,$("#img")[0].height>600?600:$("#img")[0].height) 
+      },
+      Collection:function(){
+        this.$emit("collect",$("#canvas")[0].toDataURL("image/png"))
       },
       lome:function(){
         Caman('#canvas', function () {
@@ -343,13 +350,13 @@ export default {
       opacity: 0;
       cursor: pointer;
   }
-  .file:hover,.download:hover,.remove:hover,.reset:hover {
+  .file:hover,.download:hover,.remove:hover,.reset:hover,.collection:hover {
       border-color: #78C3F3;
       color: #ff6700;
       text-decoration: none;
       cursor: pointer;
   }
-  .download,.remove,.reset,.save{
+  .download,.remove,.reset,.save,.collection{
       display: inline-block;
       background: rgb(72, 159, 223);
       border: 1px solid #99D3F5;
@@ -382,6 +389,8 @@ export default {
         background-size: cover;
         width: 200px;
         height: 130px;
+        color:#fff;
+        text-indent: 5px;
     }
 
   /*vue过渡效果*/

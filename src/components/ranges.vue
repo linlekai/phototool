@@ -33,50 +33,42 @@
   methods:{
     rangeChildren:function(name,value){
       if(name === "brightness"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {         
           this.brightness(value)
           this.render()
         })
       }else if(name === "vibrance"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {        
           this.vibrance(value)
           this.render()
         })
       }else if(name === "hue"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {         
           this.hue(value)
           this.render()
         })
       }else if(name === "gamma"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {         
           this.gamma(value)
           this.render()
         })
       }else if(name === "clip"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {         
           this.clip(value)
           this.render()
         })
       }else if(name === "clip"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {        
           this.clip(value)
           this.render()
         })
       }else if(name === "clip"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {         
           this.stackBlur(value)
           this.render()
         })
       }else if(name === "contrast"){
-        Caman('#canvas', function () {
-          
+        Caman('#canvas', function () {       
           this.contrast(value)
           this.render()
         })
@@ -115,6 +107,8 @@
     },
   }
  }
+
+
 </script>
 
 <style scoped>

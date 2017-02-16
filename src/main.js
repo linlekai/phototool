@@ -4,19 +4,26 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import core from 'components/core.vue'
+import callme from 'components/callme.vue'
+import myphoto from 'components/myphoto.vue'
 /* eslint-disable no-new */
-
 new Vue({
   el: '#app',
   router,
-  template: `<App>       
+  template: `<App>
+              <core></core>       
+              <myphoto></myphoto>
+              <callme></callme>
              <App/>
   `,
   components: {
     core,
-    App
+    App,
+    callme,
+    myphoto
   },
   data: {
 
-  }
+  },
 })
+router.push('core')

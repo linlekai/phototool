@@ -1,15 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
+import core from 'components/core'
+import myphoto from 'components/myphoto'
+import ranges from 'components/ranges'
+import callme from 'components/callme'
+
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
+  routes: [{
+    path: '/core',
+    name: 'core',
+    components: {
+      a: core,
+      b: ranges
     }
-  ]
+  }, {
+    path: '/myphoto',
+    name: 'myphoto',
+    component: myphoto
+  }, {
+    path: '/callme',
+    name: 'callme',
+    component: callme
+  }]
 })
