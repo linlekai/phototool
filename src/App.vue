@@ -32,17 +32,17 @@
     <div id="content" > 
       <transition name="fade">
         <keep-alive>
-          <router-view name="a">
-            <core v-on:read="isRead" v-on:collect="collection" ></core>  
+          <router-view v-on:collect="collection" v-on:read="isRead" name="a">
+            <!-- <core    ></core>   -->
           </router-view>
         <keep-alive>
       </transition>    
 
       <transition name="fade">
-        <keep-alive>
-          <router-view > 
+        <!-- <keep-alive> -->
+          <router-view :AppImg="singe"> 
           </router-view>
-        <keep-alive>
+        <!-- <keep-alive> -->
       </transition>
 
 
@@ -101,9 +101,17 @@ export default {
     collectionData:function(){
       var result = new Set(this.collectionData)
       this.singe = Array.from(result) 
+    },
+    singe:function(){
+      var img = this.singe
+      if(img.length <=0){
+        return
+      }else{
+        sessionStorage.setItem(img.length-1,img[img.length-1])
+      }
     }
   },
-  mounted:function(){
+  updated:function(){
     var box = []
     Object.keys(sessionStorage).map(a=>box.push(sessionStorage[a]))
     this.singe = box

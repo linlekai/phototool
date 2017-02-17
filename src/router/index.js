@@ -4,6 +4,7 @@ import core from 'components/core'
 import myphoto from 'components/myphoto'
 import ranges from 'components/ranges'
 import callme from 'components/callme'
+import photogallery from 'components/photogallery'
 
 
 Vue.use(Router)
@@ -24,5 +25,9 @@ export default new Router({
     path: '/callme',
     name: 'callme',
     component: callme
+  }, {
+    path: '/photogallery',
+    name: 'photogallery',
+    component: photogallery
   }]
 })
