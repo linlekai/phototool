@@ -29,9 +29,9 @@
           <div class="swiper-wrapper" v-once>
             <div class="swiper-slide" style="background-image:url(../static/lome.png)" @click="lome">Lome</div>
             <div class="swiper-slide" style="background-image:url(../static/vintage.png)" @click="vintage">Vintage</div>
-            <div class="swiper-slide" style="background-image:url(../static/clarity.png)" @click="clarity">Clarity</div>
-            <div class="swiper-slide" style="background-image:url(../static/sincity.png)" @click="sinCity">SinCity</div>
-            <div class="swiper-slide" style="background-image:url(../static/sunrise.png)" @click="sunrise">Sunrise</div>
+            <div class="swiper-slide" style="background-image:url(../static/Clarity.png)" @click="clarity">Clarity</div>
+            <div class="swiper-slide" style="background-image:url(../static/SinCity.png)" @click="sinCity">SinCity</div>
+            <div class="swiper-slide" style="background-image:url(../static/Sunrise.png)" @click="sunrise">Sunrise</div>
             <div class="swiper-slide" style="background-image:url(../static/corssProcess.png)" @click="corssProcess">CorssProcess</div>
             <div class="swiper-slide" style="background-image:url(../static/orangePeel.png)" @click="orangePeel">OrangePeel</div>
             <div class="swiper-slide" style="background-image:url(../static/love.png)" @click="love">Love</div>
@@ -95,24 +95,38 @@ export default {
               // 初始化Swiper
               new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
-                effect: 'coverflow',
                 grabCursor: true,
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
                 centeredSlides: true,
                 slidesPerView: 'auto',
                 loop:true,
+                slidesPerView: 4,
+                paginationClickable: true,
+                spaceBetween: 30,
+                grabCursor: true,
                 keyboardControl:true,
-                coverflow: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows : true,
-                }
               })
             this.$emit("read",this.download)
-            }) //异步结束
+              setTimeout(function(){
+                $(".reset")[0].click()
+                new Swiper('.swiper-container', {
+                  pagination: '.swiper-pagination',
+                  grabCursor: true,
+                  nextButton: '.swiper-button-next',
+                  prevButton: '.swiper-button-prev',
+                  centeredSlides: true,
+                  slidesPerView: 'auto',
+                  loop:true,
+                  slidesPerView: 4,
+                  paginationClickable: true,
+                  spaceBetween: 30,
+                  grabCursor: true,
+                  keyboardControl:true,
+                })
+              },200)
+            })
+            //异步结束
       },
       save:function(){
         this.saveDataURI = $("#canvas")[0].toDataURL("image/png")
@@ -139,117 +153,117 @@ export default {
       },
       lome:function(){
         Caman('#canvas', function () {
-          this.brightness(15);
-          this.exposure(15);
-          this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255]);
-          this.saturation(-20);
-          this.gamma(1.8);
+          this.brightness(15)
+          this.exposure(15)
+          this.curves("rgb", [0, 0], [200, 0], [155, 255], [255, 255])
+          this.saturation(-20)
+          this.gamma(1.8)
           this.render()
         })
       },
       vintage:function(){
         Caman('#canvas', function () {
-          this.greyscale();
-          this.contrast(5);
-          this.noise(3);
+          this.greyscale()
+          this.contrast(5)
+          this.noise(3)
           this.sepia(100);
           this.channels({
             red: 8,
             blue: 2,
             green: 4
-          });
-          this.gamma(0.87);
+          })
+          this.gamma(0.87)
           this.render()
         })
       },
       clarity:function(){
         Caman('#canvas', function () {
-          this.vibrance(20);
+          this.vibrance(20)
           this.curves("rgb", [5, 0], [130, 150], [190, 220], [250, 255]);
           // this.sharpen(15);
           // this.vignette("45%", 20);
-          this.greyscale();
+          this.greyscale()
           this.contrast(4)
           this.render()
         })
       },
       sinCity:function(){
         Caman('#canvas', function () {
-          this.contrast(30);
-          this.brightness(15);
-          this.exposure(10);
+          this.contrast(30)
+          this.brightness(15)
+          this.exposure(10)
           // this.posterize(80);
-          this.clip(30);
+          this.clip(30)
           this.render()
         })
       },
       sunrise:function(){
         Caman('#canvas', function () {
-          this.exposure(3.5);
-          this.saturation(-5);
-          this.vibrance(50);
-          this.sepia(60);
-          this.colorize("#e87b22", 10);
+          this.exposure(3.5)
+          this.saturation(-5)
+          this.vibrance(50)
+          this.sepia(60)
+          this.colorize("#e87b22", 10)
           this.channels({
             red: 8,
             blue: 8
           });
-          this.contrast(5);
-          this.gamma(1.2);
+          this.contrast(5)
+          this.gamma(1.2)
           this.render()
         })
       },
       corssProcess:function(){
         Caman('#canvas', function () {
-          this.exposure(5);
-          this.colorize("#e87b22", 4);
-          this.sepia(20);
+          this.exposure(5)
+          this.colorize("#e87b22", 4)
+          this.sepia(20)
           this.channels({
             blue: 8,
             red: 3
           });
-          this.curves("b", [0, 0], [100, 150], [180, 180], [255, 255]);
-          this.contrast(15);
-          this.vibrance(75);
+          this.curves("b", [0, 0], [100, 150], [180, 180], [255, 255])
+          this.contrast(15)
+          this.vibrance(75)
           this.render()
         })
       },
       orangePeel:function(){
         Caman('#canvas', function () {
-          this.curves("rgb", [0, 0], [100, 50], [140, 200], [255, 255]);
-          this.vibrance(-30);
-          this.saturation(-30);
-          this.colorize("#ff9000", 30);
-          this.contrast(-5);
+          this.curves("rgb", [0, 0], [100, 50], [140, 200], [255, 255])
+          this.vibrance(-30)
+          this.saturation(-30)
+          this.colorize("#ff9000", 30)
+          this.contrast(-5)
           this.render()
         })
       },
       love:function(){
         Caman('#canvas', function () {
-          this.brightness(5);
-          this.exposure(8);
-          this.contrast(4);
-          this.colorize("#c42007", 30);
-          this.vibrance(50);
+          this.brightness(5)
+          this.exposure(8)
+          this.contrast(4)
+          this.colorize("#c42007", 30)
+          this.vibrance(50)
           this.render()
         })
       },
       grungy:function(){
         Caman('#canvas', function () {
-          this.gamma(1.5);
-          this.clip(25);
-          this.saturation(-60);
-          this.contrast(5);
-          this.noise(5);
+          this.gamma(1.5)
+          this.clip(25)
+          this.saturation(-60)
+          this.contrast(5)
+          this.noise(5)
           this.render()
         })
       },
       jarques:function(){
         Caman('#canvas', function () {
-          this.saturation(-35);
-          this.curves("b", [20, 0], [90, 120], [186, 144], [255, 230]);
-          this.curves("r", [0, 0], [144, 90], [138, 120], [255, 255]);
-          this.curves("g", [10, 0], [115, 105], [148, 100], [255, 248]);
+          this.saturation(-35)
+          this.curves("b", [20, 0], [90, 120], [186, 144], [255, 230])
+          this.curves("r", [0, 0], [144, 90], [138, 120], [255, 255])
+          this.curves("g", [10, 0], [115, 105], [148, 100], [255, 248])
           this.curves("rgb", [0, 0], [120, 100], [128, 140], [255, 255])
           this.render()
         })
@@ -279,9 +293,9 @@ export default {
       },
       glowingSun:function(){
         Caman('#canvas', function () {
-          this.brightness(10);
-          this.gamma(0.8);
-          this.contrast(50);
+          this.brightness(10)
+          this.gamma(0.8)
+          this.contrast(50)
           this.render()
         })
       },
@@ -294,8 +308,6 @@ export default {
 
   }
 }
-
-
 
 
 

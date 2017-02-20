@@ -1,10 +1,12 @@
 <template>
-  <div id="myphotobox">
-    <p class="title">照片<span>(关闭浏览器将清空)</span></p>
-    <ul class="imgbox">
-      <li class="imglist" v-for="img in render"><img :src="img"  alt=""></li>
-    </ul>
-  </div>
+  <transition name="fade">
+    <div id="myphotobox">
+      <p class="title">照片<span>(关闭浏览器将清空)</span></p>
+      <ul class="imgbox">
+        <li class="imglist" v-for="img in render"><img :src="img"  alt=""></li>
+      </ul>
+    </div>
+  </transition >  
 </template>
 
 <script>
@@ -17,16 +19,17 @@
     },
     props:["AppImg"],
     mounted:function(){
-     Object.keys(sessionStorage).map(a=>this.render.push(sessionStorage[a]))  
+        var ss = Object.keys(sessionStorage)
+        if(ss.length>8){
+         sessionStorage.removeItem(ss[0])  
+         sessionStorage.removeItem(ss[1])  
+        }
+     ss.map(a=>this.render.push(sessionStorage[a]))  
     },
     watch:{
       imgdata:function(){
-        var ss = Object.keys(sessionStorage)
-        if(ss.length>8){
-          ss.removeItem(0)
-          ss.removeItem(1)
-        }
-        Object.keys(sessionStorage).map(a=>this.render.push(sessionStorage[a]))  
+       var ss = Object.keys(sessionStorage)     
+       ss.map(a=>this.render.push(sessionStorage[a]))  
       }
     },
   }
@@ -63,5 +66,14 @@
   }
   .imglist img {
     width: 400px;
+  }
+
+
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
 </style>

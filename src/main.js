@@ -22,8 +22,6 @@ new Vue({
     callme,
     myphoto
   },
-  data: {
-
-  },
+  data: {},
 })
 router.push('core')

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h2 class="logobox"><p><i class="fa fa-skyatlas" aria-hidden="true"></i></p><span>XX</span></h2>
+      <h2 class="logobox"><p><i class="fa fa-skyatlas" aria-hidden="true"></i></p><span>PT</span></h2>
       <ul class="userlist">
         <li class="compile">
           <router-link to="/core" >
@@ -141,6 +141,7 @@ ul {
 #app {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background-color: rgb(234,234,234);
   display: flex;
 }

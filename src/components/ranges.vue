@@ -25,8 +25,6 @@
           {rangename:"exposure"},
           {rangename:"sepia"},
           {rangename:"noise"},
-          {rangename:"sharpen"},
-
     ]
    } 
   },
@@ -97,13 +95,7 @@
           this.noise(value)
           this.render()
         })
-      }else if(name === "sharpen"){
-        Caman('#canvas', function () {        
-          this.sharpen(value)
-          this.render()
-        })
       }
-
     },
   }
  }
